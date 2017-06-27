@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void showColorPicker() {
         Intent intent = new Intent(this, VegaStarColorPicker.class);
+
+        //All of this parameters is optional
         intent.putExtra(VegaStarColorPickerSettingsConst.CURRENT_COLOR_MESSAGE, "Current color:");
         intent.putExtra(VegaStarColorPickerSettingsConst.SELECTED_COLOR_MESSAGE, "Selected color:");
         intent.putExtra(VegaStarColorPickerSettingsConst.SELECT_COLOR_MESSAGE, "Please select color");
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 int selectedValueGreen = data.getIntExtra(VegaStarColorPickerResultConst.GREEN, -1);
                 int selectedValueBlue = data.getIntExtra(VegaStarColorPickerResultConst.BLUE, -1);
                 selectedColor = data.getStringExtra(VegaStarColorPickerResultConst.HEX_HTML);
+
                 info.setText("Success select color.\n" +
                         VegaStarColorPickerResultConst.ALPHA + ": " + String.valueOf(selectedValueAlpha) + "\n" +
                         VegaStarColorPickerResultConst.RED + ": " + String.valueOf(selectedValueRed) + "\n" +
