@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -79,15 +80,25 @@ public class MainActivity extends AppCompatActivity {
                 int selectedValueRed = data.getIntExtra(VegaStarColorPickerResultConst.RED, -1);
                 int selectedValueGreen = data.getIntExtra(VegaStarColorPickerResultConst.GREEN, -1);
                 int selectedValueBlue = data.getIntExtra(VegaStarColorPickerResultConst.BLUE, -1);
-                selectedColor = data.getStringExtra(VegaStarColorPickerResultConst.HEX_HTML);
+                String selectedColorHtml = data.getStringExtra(VegaStarColorPickerResultConst.HEX_HTML);
+                String selectedColorCode = data.getStringExtra(VegaStarColorPickerResultConst.HEX_CODE);
+
+                Log.i("COLOR_PICKER_RESULT", "Success select color.\n" +
+                        VegaStarColorPickerResultConst.ALPHA + ": " + String.valueOf(selectedValueAlpha) + "\n" +
+                        VegaStarColorPickerResultConst.RED + ": " + String.valueOf(selectedValueRed) + "\n" +
+                        VegaStarColorPickerResultConst.GREEN + ": " + String.valueOf(selectedValueGreen) + "\n" +
+                        VegaStarColorPickerResultConst.BLUE + ": " + String.valueOf(selectedValueBlue) + "\n" +
+                        VegaStarColorPickerResultConst.HEX_HTML + ": " + selectedColorHtml + "\n" +
+                        VegaStarColorPickerResultConst.HEX_CODE + ": " + selectedColorCode
+                );
 
                 info.setText("Success select color.\n" +
                         VegaStarColorPickerResultConst.ALPHA + ": " + String.valueOf(selectedValueAlpha) + "\n" +
                         VegaStarColorPickerResultConst.RED + ": " + String.valueOf(selectedValueRed) + "\n" +
                         VegaStarColorPickerResultConst.GREEN + ": " + String.valueOf(selectedValueGreen) + "\n" +
                         VegaStarColorPickerResultConst.BLUE + ": " + String.valueOf(selectedValueBlue) + "\n" +
-                        VegaStarColorPickerResultConst.HEX_HTML + ": " + String.valueOf(data.getStringExtra(VegaStarColorPickerResultConst.HEX_HTML)) + "\n" +
-                        VegaStarColorPickerResultConst.HEX_CODE + ": " + String.valueOf(data.getStringExtra(VegaStarColorPickerResultConst.HEX_CODE))
+                        VegaStarColorPickerResultConst.HEX_HTML + ": " + selectedColorHtml + "\n" +
+                        VegaStarColorPickerResultConst.HEX_CODE + ": " + selectedColorCode
                 );
                 ColorDrawable colorDrawable = new ColorDrawable(Color.argb(
                         selectedValueAlpha, selectedValueRed, selectedValueGreen, selectedValueBlue));
@@ -97,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
