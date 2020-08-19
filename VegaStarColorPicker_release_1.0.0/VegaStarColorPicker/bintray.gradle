@@ -1,0 +1,81 @@
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+version = properties.getProperty("myLibrary.versionTag") //YOUR LIBRARY VERSION
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+// Bintray
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    //publications = ['MyPublication']
+    configurations = ['archives']
+    pkg {
+        //userOrg = properties.getProperty("bintray.userOrg")
+        repo = properties.getProperty("bintray.repo")
+        name = properties.getProperty("myLibrary.packageName") //YOUR PACKAGE NAME
+        desc = properties.getProperty("myLibrary.description") // YOUR LIBRARY DESCRIPTION
+        websiteUrl = properties.getProperty("myLibrary.website") // YOUR SITE
+        vcsUrl =  properties.getProperty("myLibrary.vcsUrl")// YOUR GIT REPO
+        licenses = ["Apache-2.0"] // A LIST OF YOUR LICENCES
+        publish = true
+        publicDownloadNumbers = true
+
+        /*version {
+            //name = properties.getProperty("myLibrary.versionTag")
+            //vcsTag = properties.getProperty("myLibrary.versionTag")
+            released  = new Date()
+        }*/
+    }
+}
+
+/*publish {
+    groupId = properties.getProperty("library.groupId")
+    artifactId = properties.getProperty("library.artefactId")
+    publishVersion = properties.getProperty("library.versionTag")
+    desc = properties.getProperty("library.description")
+    website = properties.getProperty("library.website")
+}*/
+
+/*
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            //from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            groupId 'com.github.forestgrass'
+            artifactId 'VegaStarColorPicker'
+            version properties.getProperty("library.versionTag")
+
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', properties.getProperty("library.description"))
+                root.appendNode('name', properties.getProperty("library.artefactId"))
+                root.appendNode('url', properties.getProperty("library.website"))
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}*/

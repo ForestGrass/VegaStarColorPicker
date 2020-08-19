@@ -1,0 +1,42 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+group = properties.getProperty("myLibrary.groupId") // CREATE A GROUP ID FOR YOUR LIBRARY
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                groupId properties.getProperty("myLibrary.groupId") // CREATE A GROUP ID FOR YOUR LIBRARY
+                artifactId properties.getProperty("myLibrary.artefactId") // THE NAME OF YOUR MODULE
+
+                name  properties.getProperty("myLibrary.name")// YOUR LIBRARY NAME
+                description properties.getProperty("myLibrary.description") // YOUR LIBRARY DESCRIPTION
+                url properties.getProperty("myLibrary.website") // YOUR SITE
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id properties.getProperty("bintray.userId") //YOUR ID
+                        name properties.getProperty("bintray.userFullName") //YOUR NAME
+                        email properties.getProperty("bintray.userEmail") //YOUR EMAIL
+                    }
+                }
+                scm {
+                    connection properties.getProperty("myLibrary.vcsUrl") // YOUR GIT REPO
+                    developerConnection properties.getProperty("myLibrary.vcsUrl") // YOUR GIT REPO
+                    url properties.getProperty("myLibrary.website") // YOUR SITE
+
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:orientation="vertical"
+            android:gravity="right"
+            android:layout_marginRight="10dp"
+            >
+            <TextView
+                android:id="@+id/currentColorMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current:"
+                android:textSize="22sp"
+                android:layout_gravity="top|right"
+                android:gravity="top" />
+
+            <TextView
+                android:id="@+id/selectedColorMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected:"
+                android:textSize="22sp"
+                android:layout_gravity="bottom|right"
+                android:gravity="bottom"
+                />
+        </FrameLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background" />
+
+                <ImageView
+                    android:id="@+id/currentColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFFFF" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background" />
+
+                <ImageView
+                    android:id="@+id/resultPreviewColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFFFF"/>
+            </FrameLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/selectColorMsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Select color"
+        android:textAlignment="center"
+        android:textSize="22sp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <FrameLayout
+            android:id="@+id/paletteSingleColor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/paletteSingleColorLayer1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/paletteSingleColorLayer2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/paletteSingleColorLayer3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/colorPickerCursor"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginTop="-5dp"
+            android:src="@drawable/color_picker_cursor" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/paletteMultiColor"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+
+            <ImageView
+                android:id="@+id/paletteMultiColorPointer"
+                android:layout_width="24dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="-5dp"
+                android:src="@drawable/pointer_top" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/alphaBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/selectAlphaMsg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select alpha"
+                android:textAlignment="center"
+                android:textSize="22sp" />
+
+            <SeekBar
+                android:id="@+id/alphaBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:text="Apply" />
+
+    </LinearLayout>
+</LinearLayout>
